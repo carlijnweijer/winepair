@@ -11,7 +11,7 @@ import {
   Lato_900Black_Italic,
   useFonts,
 } from "@expo-google-fonts/lato";
-import { AppLoading } from "expo";
+import AppLoading from "expo-app-loading";
 import React from "react";
 import { Text, View } from "react-native";
 

@@ -1,4 +1,6 @@
+import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import { FontAwesome } from "@expo/vector-icons";
+import AppLoading from "expo-app-loading";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     fontSize: 16,
-    fontFamily: "Lato-Regular",
+    fontFamily: "Lato_400Regular",
     color: "#333",
     justifyContent: "center",
     alignItems: "center",
@@ -48,28 +50,40 @@ const styles = StyleSheet.create({
 });
 
 interface FormInputProps {
-  labelValue: string;
+  labelValue?: string;
   placeholderText: string;
   iconType: any;
+  // All other props
+  [x: string]: any;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
   labelValue,
   placeholderText,
   iconType,
+  ...rest
 }) => {
-  return (
-    <View style={styles.inputContainer}>
-      <View style={styles.iconStyle}>
-        <FontAwesome name={iconType} size={24} color="black" />
+  let [fontsLoaded] = useFonts({
+    Lato_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.inputContainer}>
+        <View style={styles.iconStyle}>
+          <FontAwesome name={iconType} size={24} color="black" />
+        </View>
+        <TextInput
+          style={styles.input}
+          value={labelValue}
+          numberOfLines={1}
+          placeholder={placeholderText}
+          placeholderTextColor="#9e9e9e"
+          {...rest}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        value={labelValue}
-        numberOfLines={1}
-        placeholder={placeholderText}
-        placeholderTextColor="#9e9e9e"
-      />
-    </View>
-  );
+    );
+  }
 };

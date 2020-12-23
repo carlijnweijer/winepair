@@ -1,6 +1,6 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import { FontAwesome } from "@expo/vector-icons";
-import { AppLoading } from "expo";
+import AppLoading from "expo-app-loading";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -39,6 +39,7 @@ interface SocialLoginButtonProps {
   buttonType: any;
   color: any;
   backgroundColor: any;
+  [x: string]: any;
 }
 
 export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
@@ -46,6 +47,7 @@ export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
   buttonType,
   color,
   backgroundColor,
+  ...rest
 }) => {
   let bgColor = backgroundColor;
   let textColor = color;
@@ -59,6 +61,7 @@ export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
     return (
       <TouchableOpacity
         style={[styles.buttonContainer, { backgroundColor: bgColor }]}
+        {...rest}
       >
         <View style={styles.iconWrapper}>
           <FontAwesome name={buttonType} size={24} color="white" />

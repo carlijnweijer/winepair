@@ -1,12 +1,14 @@
+import { Lato_700Bold, useFonts } from "@expo-google-fonts/lato";
+import AppLoading from "expo-app-loading";
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { windowHeight } from "../utils/dimentions";
+import { windowHeight, windowWidth } from "../utils/dimentions";
 
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: "100%",
+    width: windowWidth / 1.2,
     height: windowHeight / 15,
     backgroundColor: "black",
     padding: 10,
@@ -15,20 +17,33 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   buttonText: {
-    fontSize: 10,
-    fontWeight: "bold",
+    fontSize: 16,
+    // fontWeight: "bold",
     color: "white",
-    fontFamily: "Lato-Regular",
+    fontFamily: "Lato_700Bold",
   },
 });
 interface FormButtonProps {
   buttonTitle: String;
+  // All other props
+  [x: string]: any;
 }
 
-export const FormButton: React.FC<FormButtonProps> = ({ buttonTitle }) => {
-  return (
-    <TouchableOpacity style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>{buttonTitle}</Text>
-    </TouchableOpacity>
-  );
+export const FormButton: React.FC<FormButtonProps> = ({
+  buttonTitle,
+  ...rest
+}) => {
+  let [fontsLoaded] = useFonts({
+    Lato_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <TouchableOpacity style={styles.buttonContainer} {...rest}>
+        <Text style={styles.buttonText}>{buttonTitle}</Text>
+      </TouchableOpacity>
+    );
+  }
 };
