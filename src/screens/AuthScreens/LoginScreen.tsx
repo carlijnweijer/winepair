@@ -15,12 +15,6 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           login();
         }}
       />
-      <Button
-        title="go to onboarding"
-        onPress={() => {
-          navigation.navigate("Onboarding");
-        }}
-      />
     </View>
   );
 };
