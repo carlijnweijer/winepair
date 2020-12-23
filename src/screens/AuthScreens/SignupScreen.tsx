@@ -1,7 +1,7 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import AppLoading from "expo-app-loading";
 import React, { useContext, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 100,
   },
-
   text: {
     fontFamily: "Lato_400Regular",
     fontSize: 28,
@@ -26,18 +25,27 @@ const styles = StyleSheet.create({
   navButton: {
     marginTop: 15,
   },
-  forgotButton: {
-    marginVertical: 35,
-  },
   navButtonText: {
     fontSize: 18,
     fontWeight: "500",
     color: "#2e64e5",
     fontFamily: "Lato_400Regular",
   },
+  textPrivate: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginVertical: 35,
+    justifyContent: "center",
+  },
+  color_textPrivate: {
+    fontSize: 13,
+    fontWeight: "400",
+    fontFamily: "Lato-Regular",
+    color: "grey",
+  },
 });
 
-export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
+export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState();
@@ -52,11 +60,7 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   } else {
     return (
       <View style={styles.container}>
-        <Image
-          style={[{ width: 150 }, { height: 185 }]}
-          source={require("../../../assets/winelady.png")}
-        />
-        <Text style={styles.text}>WinePair</Text>
+        <Text style={styles.text}>Create an account</Text>
         <FormInput
           placeholderText="Email"
           onChangeText={(userEmail: React.SetStateAction<any>) =>
@@ -79,29 +83,31 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         />
         <FormButton
           buttonTitle="Sign in"
-          onPress={() => alert("sign in clicked")}
+          onPress={() => alert("sign up clicked")}
         />
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => alert("forgot password clicked")}
-        >
-          <Text>Forgot Password?</Text>
-        </TouchableOpacity>
+
+        <View style={styles.textPrivate}>
+          <Text style={styles.color_textPrivate}>
+            By registering, you confirm that you accept our{" "}
+          </Text>
+          <TouchableOpacity onPress={() => alert("Terms Clicked!")}>
+            <Text style={[styles.color_textPrivate, { color: "#de4d41" }]}>
+              Terms of service
+            </Text>
+          </TouchableOpacity>
+          <Text style={styles.color_textPrivate}> and </Text>
+          <Text style={[styles.color_textPrivate, { color: "#de4d41" }]}>
+            Privacy Policy
+          </Text>
+        </View>
 
         <SocialLoginButton
-          buttonTitle="Sign in with Google"
+          buttonTitle="Sign up with Google"
           buttonType="google"
           color="#de4d41"
           backgroundColor="#f5e7ea"
-          onPress={() => alert("facebook got clicked")}
+          onPress={() => alert("google got clicked")}
         />
-
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => navigation.navigate("Signup")}
-        >
-          <Text>Don't have an account yet?</Text>
-        </TouchableOpacity>
       </View>
     );
   }
