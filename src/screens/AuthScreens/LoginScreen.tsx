@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { AuthNavProps } from "../../AuthParamList";
-import { AuthContext } from "../../AuthProvider";
+import { AuthNavProps } from "../../navigation/AuthParamList";
+import { AuthContext } from "../../navigation/AuthProvider";
 
 export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   const { login } = useContext(AuthContext);

@@ -2,9 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+import { LoginScreen } from "../screens/AuthScreens/LoginScreen";
+import { OnboardingScreen } from "../screens/AuthScreens/OnboardingScreen";
 import { AuthParamList } from "./AuthParamList";
-import { LoginScreen } from "./screens/AuthScreens/LoginScreen";
-import { OnboardingScreen } from "./screens/AuthScreens/OnboardingScreen";
 
 interface AuthStackProps {}
 const Stack = createStackNavigator<AuthParamList>();

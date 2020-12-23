@@ -7,7 +7,7 @@ import AppLoading from "expo-app-loading";
 import React from "react";
 import { Image, StyleSheet, Text } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import { AuthNavProps } from "../../AuthParamList";
+import { AuthNavProps } from "../../navigation/AuthParamList";
 
 export const OnboardingScreen = ({
   navigation,
