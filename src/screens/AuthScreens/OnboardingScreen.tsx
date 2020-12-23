@@ -22,11 +22,12 @@ export const OnboardingScreen = ({
     return <AppLoading />;
   }
 
-  let fontSize = 24;
   let paddingVertical = 6;
 
   return (
     <Onboarding
+      onSkip={() => navigation.replace("Login")}
+      onDone={() => navigation.navigate("Login")}
       pages={[
         {
           backgroundColor: "#fff",
@@ -34,38 +35,82 @@ export const OnboardingScreen = ({
           title: (
             <Text
               style={{
-                fontSize,
+                fontSize: 30,
                 paddingVertical,
                 fontFamily: "PlayfairDisplay_400Regular_Italic",
               }}
             >
-              Playfair Display Regular
+              First onboarding screen
             </Text>
           ),
           subtitle: (
             <Text
               style={{
-                fontSize,
+                fontSize: 18,
                 paddingVertical,
                 // Note the quoting of the value for `fontFamily` here; it expects a string!
                 fontFamily: "Lato_400Regular",
               }}
             >
-              Lato Regular
+              Find a dish that goes well with a given wine.
             </Text>
           ),
         },
         {
           backgroundColor: "#fff",
           image: <Image source={require("../../../assets/favicon.png")} />,
-          title: "Onboarding2",
-          subtitle: "Done with React Native Onboarding Swiper",
+          title: (
+            <Text
+              style={{
+                fontSize: 30,
+                paddingVertical,
+                fontFamily: "PlayfairDisplay_400Regular_Italic",
+              }}
+            >
+              Second onboarding screen
+            </Text>
+          ),
+          subtitle: (
+            <Text
+              style={{
+                fontSize: 18,
+                paddingVertical,
+                // Note the quoting of the value for `fontFamily` here; it expects a string!
+                fontFamily: "Lato_400Regular",
+              }}
+            >
+              Find a wine that goes well with a food. Food can be a dish name
+              "steak", an ingredient name "salmon", or a cuisine "italian".
+            </Text>
+          ),
         },
         {
           backgroundColor: "#fff",
           image: <Image source={require("../../../assets/favicon.png")} />,
-          title: "Onboarding3",
-          subtitle: "Done with React Native Onboarding Swiper",
+          title: (
+            <Text
+              style={{
+                fontSize: 30,
+                paddingVertical,
+                fontFamily: "PlayfairDisplay_400Regular_Italic",
+              }}
+            >
+              Last onboarding screen
+            </Text>
+          ),
+          subtitle: (
+            <Text
+              style={{
+                fontSize: 18,
+                paddingVertical,
+                // Note the quoting of the value for `fontFamily` here; it expects a string!
+                fontFamily: "Lato_400Regular",
+              }}
+            >
+              Get a simple description of a certain wine, e.g. "malbec",
+              "riesling", or "merlot".
+            </Text>
+          ),
         },
       ]}
     />
