@@ -2,12 +2,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "./AuthProvider";
+import { HomeStackNavProps } from "./HomeParamList";
 
 interface HomeStackProps {}
 
 const Stack = createStackNavigator();
 
-function Feed() {
+function Feed({ navigation }: HomeStackNavProps<"Feed">) {
   return (
     <View style={styles.container}>
       <Text>Feed</Text>
