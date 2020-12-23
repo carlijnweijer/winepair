@@ -40,8 +40,11 @@ const styles = StyleSheet.create({
   color_textPrivate: {
     fontSize: 13,
     fontWeight: "400",
-    fontFamily: "Lato-Regular",
+    fontFamily: "Lato_400Regular",
     color: "grey",
+  },
+  forgotButton: {
+    marginVertical: 35,
   },
 });
 
@@ -50,6 +53,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
 
   let [fontsLoaded] = useFonts({
     Lato_400Regular,
@@ -81,8 +85,17 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           labelValue={password}
           secureTextEntry={true}
         />
+        <FormInput
+          placeholderText="Confirm Password"
+          onChangeText={(userConfirmPassword: React.SetStateAction<any>) =>
+            setConfirmPassword(userConfirmPassword)
+          }
+          iconType="lock"
+          labelValue={confirmPassword}
+          secureTextEntry={true}
+        />
         <FormButton
-          buttonTitle="Sign in"
+          buttonTitle="Sign up"
           onPress={() => alert("sign up clicked")}
         />
 
@@ -108,6 +121,12 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           backgroundColor="#f5e7ea"
           onPress={() => alert("google got clicked")}
         />
+        <TouchableOpacity
+          style={styles.forgotButton}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text>Already have an account? Login</Text>
+        </TouchableOpacity>
       </View>
     );
   }

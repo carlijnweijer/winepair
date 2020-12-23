@@ -31,7 +31,7 @@ export const OnboardingScreen = ({
       pages={[
         {
           backgroundColor: "#fff",
-          image: <Image source={require("../../../assets/favicon.png")} />,
+          image: <Image source={require("../../../assets/winelady.png")} />,
           title: (
             <Text
               style={{
@@ -58,7 +58,7 @@ export const OnboardingScreen = ({
         },
         {
           backgroundColor: "#fff",
-          image: <Image source={require("../../../assets/favicon.png")} />,
+          image: <Image source={require("../../../assets/winelady.png")} />,
           title: (
             <Text
               style={{
@@ -86,7 +86,7 @@ export const OnboardingScreen = ({
         },
         {
           backgroundColor: "#fff",
-          image: <Image source={require("../../../assets/favicon.png")} />,
+          image: <Image source={require("../../../assets/winelady.png")} />,
           title: (
             <Text
               style={{

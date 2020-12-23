@@ -3,7 +3,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 export type AuthParamList = {
   Login: undefined;
-  // Register: undefined;
+  Signup: undefined;
   Onboarding: undefined;
 };
 
