@@ -3,8 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { LoginScreen } from "../screens/AuthScreens/LoginScreen";
-import { SignupScreen } from "../screens/AuthScreens/SignupScreen";
+import { LoginScreen } from "../../screens/AuthScreens/LoginScreen";
+import { SignupScreen } from "../../screens/AuthScreens/SignupScreen";
 import { AuthParamList } from "./AuthParamList";
 
 interface AuthStackProps {}

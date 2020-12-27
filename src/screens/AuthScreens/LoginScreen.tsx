@@ -1,13 +1,19 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import AppLoading from "expo-app-loading";
 import React, { useContext, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
 import { SocialLoginButton } from "../../components/SocialLoginButton";
-import { AuthNavProps } from "../../navigation/AuthParamList";
-import { AuthContext } from "../../navigation/AuthProvider";
+import { AuthNavProps } from "../../navigation/authStack/AuthParamList";
+import { AuthContext } from "../../navigation/authStack/AuthProvider";
 
 const styles = StyleSheet.create({
   container: {
@@ -51,7 +57,10 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <Image
           style={[{ width: 150 }, { height: 185 }]}
           source={require("../../../assets/winelady.png")}
@@ -102,7 +111,7 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         >
           <Text>Don't have an account yet?</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 };

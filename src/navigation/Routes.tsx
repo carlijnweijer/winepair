@@ -3,10 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet } from "react-native";
-import { AppTabs } from "./AppTabs";
-import { AuthParamList } from "./AuthParamList";
-import { AuthContext } from "./AuthProvider";
-import { AuthStack } from "./AuthStack";
+import { AppTabs } from "./appStack/AppTabs";
+import { AuthParamList } from "./authStack/AuthParamList";
+import { AuthContext } from "./authStack/AuthProvider";
+import { AuthStack } from "./authStack/AuthStack";
 
 interface RoutesProps {}
 

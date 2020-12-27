@@ -1,13 +1,19 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import AppLoading from "expo-app-loading";
 import React, { useContext, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
 import { SocialLoginButton } from "../../components/SocialLoginButton";
-import { AuthNavProps } from "../../navigation/AuthParamList";
-import { AuthContext } from "../../navigation/AuthProvider";
+import { AuthNavProps } from "../../navigation/authStack/AuthParamList";
+import { AuthContext } from "../../navigation/authStack/AuthProvider";
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +69,10 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <Text style={styles.text}>Create an account</Text>
         <FormInput
           placeholderText="Email"
@@ -128,7 +137,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         >
           <Text>Already have an account? Login</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 };

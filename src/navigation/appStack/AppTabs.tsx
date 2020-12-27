@@ -2,8 +2,8 @@ import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { HomeStack } from "../homeStack/HomeStack";
 import { AppParamList } from "./AppParamList";
-import { HomeStack } from "./HomeStack";
 
 interface AppTabsProps {}
 

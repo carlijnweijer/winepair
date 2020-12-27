@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { AuthContext } from "./AuthProvider";
+import { AuthContext } from "../authStack/AuthProvider";
 import { HomeStackNavProps } from "./HomeParamList";
 
 interface HomeStackProps {}
