@@ -1,27 +1,19 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet } from "react-native";
+import { HomeScreen } from "../../screens/AuthScreens/HomeScreen";
 import { AuthContext } from "../authStack/AuthProvider";
-import { HomeStackNavProps } from "./HomeParamList";
 
 interface HomeStackProps {}
 
 const Stack = createStackNavigator();
-
-function Feed({ navigation }: HomeStackNavProps<"Feed">) {
-  return (
-    <View style={styles.container}>
-      <Text>Feed</Text>
-    </View>
-  );
-}
 
 export const HomeStack: React.FC<HomeStackProps> = ({}) => {
   const { logout } = useContext(AuthContext);
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Feed"
+        name="Home"
         options={{
           headerRight: () => {
             return (
@@ -34,7 +26,7 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
             );
           },
         }}
-        component={Feed}
+        component={HomeScreen}
       />
     </Stack.Navigator>
   );

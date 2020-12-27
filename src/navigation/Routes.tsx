@@ -1,8 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import firebase from "firebase";
+import "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { AppTabs } from "./appStack/AppTabs";
 import { AuthParamList } from "./authStack/AuthParamList";
 import { AuthContext } from "./authStack/AuthProvider";
@@ -13,27 +14,20 @@ interface RoutesProps {}
 const Stack = createStackNavigator<AuthParamList>();
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
-  const { user, login } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true);
+  const { user, setUser } = useContext(AuthContext);
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    //check if user is logged in or not
-    AsyncStorage.getItem("user")
-      .then((userString) => {
-        if (userString) {
-          //decode it
-        }
-        setLoading(false);
-        console.log(userString);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+    console.log("user is ", user);
 
-  if (loading) {
-    return <ActivityIndicator size="large" />;
-  }
+    const subscriber = firebase.auth().onAuthStateChanged(function (user) {
+      setUser(user);
+      if (initializing) {
+        setInitializing(false);
+      }
+    });
+    return subscriber; // unsubscrible on unmount
+  }, []);
 
   return (
     <NavigationContainer>

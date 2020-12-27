@@ -1,21 +1,21 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase from "firebase";
 import "firebase/auth";
-import "firebase/firestore";
 import React, { useState } from "react";
 
-type User = null | { username: string };
+type User = null | firebase.User;
 
 export const AuthContext = React.createContext<{
   user: User;
   login: (email: string, password: string) => void;
   logout: () => void;
   register: (email: string, password: string) => void;
+  setUser: (user: User) => void;
 }>({
   user: null,
   login: () => {},
   logout: () => {},
   register: () => {},
+  setUser: () => {},
 });
 
 interface AuthProviderProps {}
@@ -27,6 +27,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         login: async (email, password) => {
           try {
             const result = await firebase
@@ -38,8 +39,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           }
         },
         logout: () => {
-          setUser(null);
-          AsyncStorage.removeItem("user");
+          try {
+            firebase.auth().signOut();
+          } catch (error) {
+            console.error(error);
+          }
         },
         register: async (email, password) => {
           try {

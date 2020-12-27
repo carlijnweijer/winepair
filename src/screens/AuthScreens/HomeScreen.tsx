@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { FormButton } from "../../components/FormButton";
+import { AuthContext } from "../../navigation/authStack/AuthProvider";
+import { HomeStackNavProps } from "../../navigation/homeStack/HomeParamList";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,10 +20,21 @@ const styles = StyleSheet.create({
 
 interface HomeScreenProps {}
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({}) => {
+export const HomeScreen = ({
+  navigation,
+  route,
+}: HomeStackNavProps<"Home">) => {
+  const { logout } = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome</Text>
+      <FormButton
+        buttonTitle="logout"
+        onPress={() => {
+          logout();
+        }}
+      />
     </View>
   );
 };

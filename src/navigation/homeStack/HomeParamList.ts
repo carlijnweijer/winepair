@@ -2,7 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 export type HomeParamList = {
-  Feed: undefined;
+  Home: undefined;
 };
 
 export type HomeStackNavProps<T extends keyof HomeParamList> = {
