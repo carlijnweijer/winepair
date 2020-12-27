@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
-  const { login } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -71,7 +71,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
             setEmail(userEmail)
           }
           iconType="user"
-          keyboardType="email-adrress"
+          keyboardType="email-address"
           labelValue={email}
           autoCapitalize="none"
           autoCorrect={false}
@@ -94,9 +94,10 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           labelValue={confirmPassword}
           secureTextEntry={true}
         />
+
         <FormButton
           buttonTitle="Sign up"
-          onPress={() => alert("sign up clicked")}
+          onPress={() => register(email!, confirmPassword!)}
         />
 
         <View style={styles.textPrivate}>

@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LoginScreen } from "../screens/AuthScreens/LoginScreen";
-import { OnboardingScreen } from "../screens/AuthScreens/OnboardingScreen";
 import { SignupScreen } from "../screens/AuthScreens/SignupScreen";
 import { AuthParamList } from "./AuthParamList";
 
@@ -29,12 +28,7 @@ export const AuthStack: React.FC<AuthStackProps> = ({}) => {
     return null;
   } else if (isFirstLaunch === true) {
     return (
-      <Stack.Navigator initialRouteName="Onboarding">
-        <Stack.Screen
-          name="Onboarding"
-          options={{ header: () => null }}
-          component={OnboardingScreen}
-        />
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
           options={{ header: () => null }}

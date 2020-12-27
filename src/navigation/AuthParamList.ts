@@ -4,7 +4,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 export type AuthParamList = {
   Login: undefined;
   Signup: undefined;
-  Onboarding: undefined;
 };
 
 export type AuthNavProps<T extends keyof AuthParamList> = {

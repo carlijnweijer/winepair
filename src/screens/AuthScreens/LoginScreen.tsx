@@ -63,7 +63,7 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
             setEmail(userEmail)
           }
           iconType="user"
-          keyboardType="email-adrress"
+          keyboardType="email-address"
           labelValue={email}
           autoCapitalize="none"
           autoCorrect={false}
@@ -79,7 +79,7 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         />
         <FormButton
           buttonTitle="Sign in"
-          onPress={() => alert("sign in clicked")}
+          onPress={() => login(email!, password!)}
         />
         <TouchableOpacity
           style={styles.forgotButton}
