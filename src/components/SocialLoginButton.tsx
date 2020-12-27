@@ -1,8 +1,7 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import { FontAwesome } from "@expo/vector-icons";
-import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { windowHeight } from "../utils/dimentions";
 
@@ -56,7 +55,7 @@ export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator size="large" color="#00ff00" />;
   } else {
     return (
       <TouchableOpacity

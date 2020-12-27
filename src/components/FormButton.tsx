@@ -1,7 +1,6 @@
 import { Lato_700Bold, useFonts } from "@expo-google-fonts/lato";
-import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { ActivityIndicator, StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { windowHeight, windowWidth } from "../utils/dimentions";
 
@@ -38,7 +37,7 @@ export const FormButton: React.FC<FormButtonProps> = ({
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator size="large" color="#00ff00" />;
   } else {
     return (
       <TouchableOpacity style={styles.buttonContainer} {...rest}>

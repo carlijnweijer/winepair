@@ -1,8 +1,7 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
 import { FontAwesome } from "@expo/vector-icons";
-import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { windowHeight, windowWidth } from "../utils/dimentions";
 
@@ -68,7 +67,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator size="large" color="#00ff00" />;
   } else {
     return (
       <View style={styles.inputContainer}>

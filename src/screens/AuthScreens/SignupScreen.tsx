@@ -1,7 +1,7 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
-import AppLoading from "expo-app-loading";
 import React, { useContext, useState } from "react";
 import {
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -66,7 +66,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator size="large" color="#00ff00" />;
   } else {
     return (
       <KeyboardAvoidingView

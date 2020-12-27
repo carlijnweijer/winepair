@@ -11,9 +11,8 @@ import {
   Lato_900Black_Italic,
   useFonts,
 } from "@expo-google-fonts/lato";
-import AppLoading from "expo-app-loading";
 import React from "react";
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 
 export default () => {
   let [fontsLoaded] = useFonts({
@@ -33,7 +32,7 @@ export default () => {
   let paddingVertical = 6;
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <ActivityIndicator size="large" color="#00ff00" />;
   } else {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
