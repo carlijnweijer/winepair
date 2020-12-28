@@ -1,4 +1,5 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
+import { PlayfairDisplay_600SemiBold_Italic } from "@expo-google-fonts/playfair-display";
 import React, { useContext, useState } from "react";
 import {
   ActivityIndicator,
@@ -11,37 +12,40 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
-import { SocialLoginButton } from "../../components/SocialLoginButton";
 import { AuthNavProps } from "../../navigation/authStack/AuthParamList";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
+import { windowHeight } from "../../utils/dimentions";
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    paddingTop: 100,
+    // paddingTop: 100,
+    backgroundColor: "black",
+    height: windowHeight,
   },
-
+  image: {
+    height: 370,
+    width: 300,
+    marginBottom: 20,
+  },
   text: {
     fontFamily: "Lato_400Regular",
-    fontSize: 28,
+    fontSize: 38,
     marginBottom: 10,
-    color: "black",
-  },
-  navButton: {
-    marginTop: 15,
+    color: "white",
   },
   forgotButton: {
-    marginVertical: 35,
+    marginTop: 25,
   },
-  navButtonText: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#2e64e5",
+  forgotButtonText: {
+    color: "white",
     fontFamily: "Lato_400Regular",
   },
 });
+
+//(original height / original width) x new width = new height
 
 export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   const { login } = useContext(AuthContext);
@@ -50,6 +54,7 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   const [password, setPassword] = useState();
 
   let [fontsLoaded] = useFonts({
+    PlayfairDisplay_600SemiBold_Italic,
     Lato_400Regular,
   });
 
@@ -62,10 +67,17 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Image
-          style={[{ width: 150 }, { height: 185 }]}
+          style={styles.image}
           source={require("../../../assets/winelady.png")}
         />
-        <Text style={styles.text}>WinePair</Text>
+        <Text
+          style={[
+            styles.text,
+            { fontFamily: "PlayfairDisplay_600SemiBold_Italic" },
+          ]}
+        >
+          WinePair
+        </Text>
         <FormInput
           placeholderText="Email"
           onChangeText={(userEmail: React.SetStateAction<any>) =>
@@ -94,22 +106,24 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           style={styles.forgotButton}
           onPress={() => alert("forgot password clicked")}
         >
-          <Text>Forgot Password?</Text>
+          <Text style={styles.forgotButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <SocialLoginButton
+        {/* <SocialLoginButton
           buttonTitle="Sign in with Google"
           buttonType="google"
           color="#de4d41"
           backgroundColor="#f5e7ea"
           onPress={() => alert("facebook got clicked")}
-        />
+        /> */}
 
         <TouchableOpacity
           style={styles.forgotButton}
           onPress={() => navigation.navigate("Signup")}
         >
-          <Text>Don't have an account yet?</Text>
+          <Text style={styles.forgotButtonText}>
+            Don't have an account yet?
+          </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );

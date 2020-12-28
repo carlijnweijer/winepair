@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "100%",
     height: windowHeight / 15,
-    borderColor: "#9e9e9e",
-    borderRadius: 3,
+    borderColor: "white",
+    borderRadius: windowHeight / 30,
     borderWidth: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "black",
   },
   iconStyle: {
     padding: 10,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontFamily: "Lato_400Regular",
-    color: "#333",
+    color: "white",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -72,7 +72,7 @@ export const FormInput: React.FC<FormInputProps> = ({
     return (
       <View style={styles.inputContainer}>
         <View style={styles.iconStyle}>
-          <FontAwesome name={iconType} size={24} color="black" />
+          <FontAwesome name={iconType} size={24} color="white" />
         </View>
         <TextInput
           style={styles.input}

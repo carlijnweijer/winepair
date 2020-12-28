@@ -50,8 +50,8 @@ export const AuthStack: React.FC<AuthStackProps> = ({}) => {
           options={({ navigation }) => ({
             title: "",
             headerStyle: {
-              backgroundColor: "#f9fafd",
-              shadowColor: "#f9fafd",
+              backgroundColor: "black",
+              shadowColor: "black",
               elevation: 0,
             },
             headerLeft: () => (
@@ -59,8 +59,8 @@ export const AuthStack: React.FC<AuthStackProps> = ({}) => {
                 <FontAwesome
                   name={"long-arrow-left"}
                   size={24}
-                  backgroundColor="#f9fafd"
-                  color="black"
+                  backgroundColor="black"
+                  color="white"
                   onPress={() => navigation.navigate("Login")}
                 />
               </View>

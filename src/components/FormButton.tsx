@@ -2,18 +2,19 @@ import { Lato_700Bold, useFonts } from "@expo-google-fonts/lato";
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { colors } from "../utils/colors";
 import { windowHeight, windowWidth } from "../utils/dimentions";
 
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: windowWidth / 1.2,
+    width: windowWidth / 3,
     height: windowHeight / 15,
-    backgroundColor: "black",
+    backgroundColor: colors.red,
     padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 3,
+    borderRadius: windowHeight / 30,
   },
   buttonText: {
     fontSize: 16,

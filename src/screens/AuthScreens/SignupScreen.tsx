@@ -1,7 +1,9 @@
 import { Lato_400Regular, useFonts } from "@expo-google-fonts/lato";
+import { PlayfairDisplay_600SemiBold_Italic } from "@expo-google-fonts/playfair-display";
 import React, { useContext, useState } from "react";
 import {
   ActivityIndicator,
+  Image,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -11,36 +13,33 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
-import { SocialLoginButton } from "../../components/SocialLoginButton";
 import { AuthNavProps } from "../../navigation/authStack/AuthParamList";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
+import { windowHeight } from "../../utils/dimentions";
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    paddingTop: 100,
+    backgroundColor: "black",
+    height: windowHeight,
   },
   text: {
+    textAlign: "center",
     fontFamily: "Lato_400Regular",
     fontSize: 28,
+    color: "white",
     marginBottom: 10,
-    color: "black",
   },
-  navButton: {
-    marginTop: 15,
-  },
-  navButtonText: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#2e64e5",
-    fontFamily: "Lato_400Regular",
+  image: {
+    height: 300,
+    width: 145,
   },
   textPrivate: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginVertical: 35,
+    marginVertical: 15,
     justifyContent: "center",
   },
   color_textPrivate: {
@@ -63,6 +62,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
 
   let [fontsLoaded] = useFonts({
     Lato_400Regular,
+    PlayfairDisplay_600SemiBold_Italic,
   });
 
   if (!fontsLoaded) {
@@ -73,7 +73,19 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Text style={styles.text}>Create an account</Text>
+        <Image
+          style={styles.image}
+          source={require("../../../assets/winepoor.png")}
+        />
+        <Text
+          style={[
+            styles.text,
+            { fontFamily: "PlayfairDisplay_600SemiBold_Italic" },
+          ]}
+        >
+          Create an account
+        </Text>
+
         <FormInput
           placeholderText="Email"
           onChangeText={(userEmail: React.SetStateAction<any>) =>
@@ -124,13 +136,13 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           </Text>
         </View>
 
-        <SocialLoginButton
+        {/* <SocialLoginButton
           buttonTitle="Sign up with Google"
           buttonType="google"
           color="#de4d41"
           backgroundColor="#f5e7ea"
           onPress={() => alert("google got clicked")}
-        />
+        /> */}
         <TouchableOpacity
           style={styles.forgotButton}
           onPress={() => navigation.navigate("Login")}
