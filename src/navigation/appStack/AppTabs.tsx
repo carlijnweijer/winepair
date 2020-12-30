@@ -1,18 +1,18 @@
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { colors } from "../../utils/colors";
 import { HomeStack } from "../homeStack/HomeStack";
 import { AppParamList } from "./AppParamList";
-
 interface AppTabsProps {}
 
 const Tabs = createBottomTabNavigator<AppParamList>();
 
-function Search() {
+function MyProfile() {
   return (
     <View style={styles.container}>
-      <Text>Search</Text>
+      <Text>MyProfile Page</Text>
     </View>
   );
 }
@@ -22,25 +22,24 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
     <Tabs.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
           if (route.name === "Home") {
-            return <AntDesign name="home" size={24} color="black" />;
-          } else if (route.name === "Search") {
-            return <AntDesign name="search1" size={24} color="black" />;
+            return <FontAwesome5 name="wine-bottle" size={18} color="white" />;
+          } else if (route.name === "MyProfile") {
+            return <FontAwesome5 name="user-alt" size={18} color="white" />;
           }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
-        activeTintColor: "tomato",
+        activeTintColor: colors.red,
         inactiveTintColor: "gray",
+        style: {
+          backgroundColor: "black",
+          paddingTop: 15,
+        },
       }}
     >
       <Tabs.Screen name="Home" component={HomeStack} />
-      <Tabs.Screen name="Search" component={Search} />
+      <Tabs.Screen name="MyProfile" component={MyProfile} />
     </Tabs.Navigator>
   );
 };

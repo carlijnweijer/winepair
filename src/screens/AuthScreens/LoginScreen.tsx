@@ -14,6 +14,7 @@ import { FormButton } from "../../components/FormButton";
 import { FormInput } from "../../components/FormInput";
 import { AuthNavProps } from "../../navigation/authStack/AuthParamList";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
+import { colors } from "../../utils/colors";
 import { windowHeight } from "../../utils/dimentions";
 
 const styles = StyleSheet.create({
@@ -45,8 +46,6 @@ const styles = StyleSheet.create({
   },
 });
 
-//(original height / original width) x new width = new height
-
 export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   const { login } = useContext(AuthContext);
 
@@ -59,57 +58,58 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   });
 
   if (!fontsLoaded) {
-    return <ActivityIndicator size="large" color="#00ff00" />;
-  } else {
-    return (
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <Image
-          style={styles.image}
-          source={require("../../../assets/winelady.png")}
-        />
-        <Text
-          style={[
-            styles.text,
-            { fontFamily: "PlayfairDisplay_600SemiBold_Italic" },
-          ]}
-        >
-          WinePair
-        </Text>
-        <FormInput
-          placeholderText="Email"
-          onChangeText={(userEmail: React.SetStateAction<any>) =>
-            setEmail(userEmail)
-          }
-          iconType="user"
-          keyboardType="email-address"
-          labelValue={email}
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <FormInput
-          placeholderText="Password"
-          onChangeText={(userPassword: React.SetStateAction<any>) =>
-            setPassword(userPassword)
-          }
-          iconType="lock"
-          labelValue={password}
-          secureTextEntry={true}
-        />
-        <FormButton
-          buttonTitle="Sign in"
-          onPress={() => login(email!, password!)}
-        />
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => alert("forgot password clicked")}
-        >
-          <Text style={styles.forgotButtonText}>Forgot Password?</Text>
-        </TouchableOpacity>
+    return <ActivityIndicator size="large" color={colors.red} />;
+  }
 
-        {/* <SocialLoginButton
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <Image
+        style={styles.image}
+        source={require("../../../assets/winelady.png")}
+      />
+      <Text
+        style={[
+          styles.text,
+          { fontFamily: "PlayfairDisplay_600SemiBold_Italic" },
+        ]}
+      >
+        WinePair
+      </Text>
+      <FormInput
+        placeholderText="Email"
+        onChangeText={(userEmail: React.SetStateAction<any>) =>
+          setEmail(userEmail)
+        }
+        iconType="user"
+        keyboardType="email-address"
+        labelValue={email}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+      <FormInput
+        placeholderText="Password"
+        onChangeText={(userPassword: React.SetStateAction<any>) =>
+          setPassword(userPassword)
+        }
+        iconType="lock"
+        labelValue={password}
+        secureTextEntry={true}
+      />
+      <FormButton
+        buttonTitle="Sign in"
+        onPress={() => login(email!, password!)}
+      />
+      <TouchableOpacity
+        style={styles.forgotButton}
+        onPress={() => alert("forgot password clicked")}
+      >
+        <Text style={styles.forgotButtonText}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      {/* <SocialLoginButton
           buttonTitle="Sign in with Google"
           buttonType="google"
           color="#de4d41"
@@ -117,15 +117,12 @@ export const LoginScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
           onPress={() => alert("facebook got clicked")}
         /> */}
 
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => navigation.navigate("Signup")}
-        >
-          <Text style={styles.forgotButtonText}>
-            Don't have an account yet?
-          </Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
-    );
-  }
+      <TouchableOpacity
+        style={styles.forgotButton}
+        onPress={() => navigation.navigate("Signup")}
+      >
+        <Text style={styles.forgotButtonText}>Don't have an account yet?</Text>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
+  );
 };

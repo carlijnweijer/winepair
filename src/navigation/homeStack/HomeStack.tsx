@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { HomeScreen } from "../../screens/AuthScreens/HomeScreen";
 import { AuthContext } from "../authStack/AuthProvider";
 
@@ -15,16 +15,7 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
       <Stack.Screen
         name="Home"
         options={{
-          headerRight: () => {
-            return (
-              <Button
-                title="logout"
-                onPress={() => {
-                  logout();
-                }}
-              />
-            );
-          },
+          header: () => null,
         }}
         component={HomeScreen}
       />

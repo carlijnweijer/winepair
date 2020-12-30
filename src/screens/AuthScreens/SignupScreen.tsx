@@ -20,6 +20,7 @@ import { windowHeight } from "../../utils/dimentions";
 const styles = StyleSheet.create({
   container: {
     // justifyContent: "center",
+    flex: 1,
     alignItems: "center",
     padding: 20,
     backgroundColor: "black",
@@ -70,9 +71,10 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
   } else {
     return (
       <KeyboardAvoidingView
-        style={styles.container}
+        style={[styles.container, { flex: 1 }]}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
+        {/* <ScrollView> */}
         <Image
           style={styles.image}
           source={require("../../../assets/winepoor.png")}
@@ -135,6 +137,7 @@ export const SignupScreen = ({ navigation, route }: AuthNavProps<"Login">) => {
             Privacy Policy
           </Text>
         </View>
+        {/* </ScrollView> */}
 
         {/* <SocialLoginButton
           buttonTitle="Sign up with Google"
