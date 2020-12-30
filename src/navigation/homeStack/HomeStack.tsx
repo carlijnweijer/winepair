@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
-import { HomeScreen } from "../../screens/AuthScreens/HomeScreen";
+import { HomeScreen } from "../../screens/HomeScreens/HomeScreen";
 import { AuthContext } from "../authStack/AuthProvider";
 
 interface HomeStackProps {}

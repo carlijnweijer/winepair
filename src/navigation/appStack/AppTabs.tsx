@@ -1,8 +1,10 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../../utils/colors";
+import { AuthContext } from "../authStack/AuthProvider";
+import { AuthStack } from "../authStack/AuthStack";
 import { HomeStack } from "../homeStack/HomeStack";
 import { AppParamList } from "./AppParamList";
 interface AppTabsProps {}
@@ -18,6 +20,7 @@ function MyProfile() {
 }
 
 export const AppTabs: React.FC<AppTabsProps> = ({}) => {
+  const { user, setUser } = useContext(AuthContext);
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -39,7 +42,7 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
       }}
     >
       <Tabs.Screen name="Home" component={HomeStack} />
-      <Tabs.Screen name="MyProfile" component={MyProfile} />
+      <Tabs.Screen name="MyProfile" component={user ? MyProfile : AuthStack} />
     </Tabs.Navigator>
   );
 };

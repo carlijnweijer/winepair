@@ -4,9 +4,9 @@ import firebase from "firebase";
 import "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+import { AppTabs } from "./appStack/AppTabs";
 import { AuthParamList } from "./authStack/AuthParamList";
 import { AuthContext } from "./authStack/AuthProvider";
-import { HomeStack } from "./homeStack/HomeStack";
 
 interface RoutesProps {}
 
@@ -30,8 +30,8 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
 
   return (
     <NavigationContainer>
-      <HomeStack />
-      {/* {user ? <HomeStack /> : <AuthStack />} */}
+      <AppTabs />
+      {/* {user ? <AppTabs /> : <AuthStack />} */}
     </NavigationContainer>
   );
 };
