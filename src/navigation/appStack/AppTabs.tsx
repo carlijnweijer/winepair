@@ -1,4 +1,4 @@
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -7,14 +7,25 @@ import { AuthContext } from "../authStack/AuthProvider";
 import { AuthStack } from "../authStack/AuthStack";
 import { HomeStack } from "../homeStack/HomeStack";
 import { AppParamList } from "./AppParamList";
+
 interface AppTabsProps {}
 
 const Tabs = createBottomTabNavigator<AppParamList>();
 
 function MyProfile() {
+  const { logout } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Text>MyProfile Page</Text>
+      <MaterialIcons
+        style={styles.logoutBtn}
+        name="logout"
+        size={24}
+        color={colors.red}
+        onPress={() => {
+          logout();
+        }}
+      />
     </View>
   );
 }
@@ -52,5 +63,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  logoutBtn: {
+    position: "absolute",
+    top: 45,
+    right: 5,
+    margin: 10,
   },
 });
