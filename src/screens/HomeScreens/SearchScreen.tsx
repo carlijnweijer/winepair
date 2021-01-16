@@ -1,11 +1,15 @@
-import { Lato_700Bold, useFonts } from "@expo-google-fonts/lato";
+import {
+  Lato_400Regular,
+  Lato_700Bold,
+  useFonts,
+} from "@expo-google-fonts/lato";
 import {
   PlayfairDisplay_400Regular_Italic,
   PlayfairDisplay_700Bold_Italic,
 } from "@expo-google-fonts/playfair-display";
 import React, { useContext } from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { secrets } from "../../../firebase";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
@@ -17,10 +21,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
+    backgroundColor: "white",
   },
   content: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
   },
   title: {
     fontSize: 33,
@@ -28,17 +33,23 @@ const styles = StyleSheet.create({
     width: 265,
     textAlign: "center",
     letterSpacing: 0.75,
+    marginVertical: 22.5,
   },
-  button: {
-    width: 274,
-    height: 56,
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 32,
+  input: {
     flexDirection: "row",
     alignItems: "center",
   },
-  buttonTxt: {
+  inputLabel: {
+    width: 274,
+    height: 56,
+    backgroundColor: colors.lightgrey,
+    borderRadius: 32,
+    flex: 1,
+    fontSize: 15,
+    fontFamily: "Lato_700Bold",
+    textAlign: "center",
+  },
+  inputTxt: {
     fontFamily: "Lato_700Bold",
     textTransform: "uppercase",
     fontSize: 16,
@@ -46,6 +57,15 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
     letterSpacing: 0.75,
+  },
+  iconStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 31,
+    width: 31,
+    backgroundColor: colors.red,
+    borderRadius: 54,
+    marginLeft: 10,
   },
 });
 
@@ -74,6 +94,7 @@ export const SearchScreen = ({
     PlayfairDisplay_400Regular_Italic,
     PlayfairDisplay_700Bold_Italic,
     Lato_700Bold,
+    Lato_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -84,18 +105,17 @@ export const SearchScreen = ({
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Search</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Search")}
-        >
-          <Text style={styles.buttonTxt}>get started</Text>
-          <Image
-            source={require("../../../assets/Iconly/arrowRight.png")}
-            style={{ height: 41, width: 41, marginRight: 8 }}
-          />
-        </TouchableOpacity>
-        <Image source={require("../../../assets/imgwoman.png")} />
+        <View style={styles.input}>
+          <TextInput style={styles.inputLabel} placeholder="by wine" />
+          <View style={styles.iconStyle}>
+            <Image
+              source={require("../../../assets/Iconly/Filter.png")}
+              style={{ height: 16, width: 16 }}
+            />
+          </View>
+        </View>
       </View>
+      <Image source={require("../../../assets/winebackground.png")} />
     </SafeAreaView>
   );
 };
