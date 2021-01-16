@@ -1,17 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useContext } from "react";
-import { StyleSheet } from "react-native";
+import React from "react";
 import { HomeScreen } from "../../screens/HomeScreens/HomeScreen";
-import { AuthContext } from "../authStack/AuthProvider";
+import { SearchScreen } from "../../screens/HomeScreens/SearchScreen";
 
 interface HomeStackProps {}
 
 const Stack = createStackNavigator();
 
 export const HomeStack: React.FC<HomeStackProps> = ({}) => {
-  const { logout } = useContext(AuthContext);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
         options={{
@@ -24,16 +22,8 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
         options={{
           header: () => null,
         }}
-        component={HomeScreen}
+        component={SearchScreen}
       />
     </Stack.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

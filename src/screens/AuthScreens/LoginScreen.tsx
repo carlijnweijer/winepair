@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     // paddingTop: 100,
-    backgroundColor: "black",
+    backgroundColor: colors.darkbg,
     height: windowHeight,
   },
   image: {

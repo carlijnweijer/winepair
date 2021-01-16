@@ -4,9 +4,9 @@ import {
   PlayfairDisplay_700Bold_Italic,
 } from "@expo-google-fonts/playfair-display";
 import React, { useContext } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { secrets } from "../../../firebase";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
 import { HomeStackNavProps } from "../../navigation/homeStack/HomeParamList";
 import { colors } from "../../utils/colors";
@@ -52,12 +52,25 @@ const styles = StyleSheet.create({
 
 interface HomeScreenProps {}
 
-export const HomeScreen = ({
+export const SearchScreen = ({
   navigation,
   route,
 }: HomeStackNavProps<"Home">) => {
   const { logout } = useContext(AuthContext);
+  const apiUrl = secrets.apiUrl;
+  const apiKey = secrets.apikey;
+  const query = "steak";
 
+  // const getPairing = async () => {
+  //   const response = await axios.get(
+  //     `${apiUrl}/pairing?apiKey=${apiKey}&food=${query}`
+  //   );
+  //   console.log("response is, ", response.data);
+  // };
+
+  // useEffect(() => {
+  //   getPairing();
+  // }, []);
   let [fontsLoaded] = useFonts({
     PlayfairDisplay_400Regular_Italic,
     PlayfairDisplay_700Bold_Italic,
@@ -71,8 +84,8 @@ export const HomeScreen = ({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Elegance &#38; soul of a best wine</Text>
-        <Image source={require("../../../assets/imgwoman.png")} />
+        <Text style={styles.title}>Search</Text>
+        {/* <Image source={require("../../../assets/imgwoman.png")} />
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Search")}
@@ -82,7 +95,7 @@ export const HomeScreen = ({
             source={require("../../../assets/Iconly/arrowRight.png")}
             style={{ height: 41, width: 41, marginRight: 8 }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );

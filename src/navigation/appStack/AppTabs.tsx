@@ -54,7 +54,7 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
     <Tabs.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "Home") {
+          if (route.name === "Search") {
             return <MaterialIcons name="wine-bar" size={size} color={color} />;
           } else if (route.name === "MyProfile") {
             return <FontAwesome name="user" size={size} color={color} />;
@@ -75,11 +75,12 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
         inactiveTintColor: colors.lightgrey,
         style: {
           backgroundColor: colors.darkbg,
+          borderTopColor: "transparent",
           paddingTop: 15,
         },
       }}
     >
-      <Tabs.Screen name="Home" component={HomeStack} />
+      <Tabs.Screen name="Search" component={HomeStack} />
       <Tabs.Screen
         name="MyFavorites"
         component={user ? myFavorites : AuthStack}
