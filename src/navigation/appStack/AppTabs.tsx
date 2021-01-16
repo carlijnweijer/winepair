@@ -1,4 +1,4 @@
-import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -30,6 +30,24 @@ function MyProfile() {
   );
 }
 
+function myFavorites() {
+  const { logout } = useContext(AuthContext);
+  return (
+    <View style={styles.container}>
+      <Text>favorites Page</Text>
+      <MaterialIcons
+        style={styles.logoutBtn}
+        name="logout"
+        size={24}
+        color={colors.red}
+        onPress={() => {
+          logout();
+        }}
+      />
+    </View>
+  );
+}
+
 export const AppTabs: React.FC<AppTabsProps> = ({}) => {
   const { user, setUser } = useContext(AuthContext);
   return (
@@ -37,22 +55,35 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
-            return <FontAwesome5 name="wine-bottle" size={18} color="white" />;
+            return <MaterialIcons name="wine-bar" size={size} color={color} />;
           } else if (route.name === "MyProfile") {
-            return <FontAwesome5 name="user-alt" size={18} color="white" />;
+            return <FontAwesome name="user" size={size} color={color} />;
+          } else if (route.name === "MyFavorites") {
+            return (
+              <MaterialIcons
+                name="favorite-outline"
+                size={size}
+                color={color}
+              />
+            );
           }
         },
       })}
       tabBarOptions={{
+        showLabel: false,
         activeTintColor: colors.red,
-        inactiveTintColor: "gray",
+        inactiveTintColor: colors.lightgrey,
         style: {
-          backgroundColor: "black",
+          backgroundColor: colors.darkbg,
           paddingTop: 15,
         },
       }}
     >
       <Tabs.Screen name="Home" component={HomeStack} />
+      <Tabs.Screen
+        name="MyFavorites"
+        component={user ? myFavorites : AuthStack}
+      />
       <Tabs.Screen name="MyProfile" component={user ? MyProfile : AuthStack} />
     </Tabs.Navigator>
   );

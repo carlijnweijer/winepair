@@ -19,6 +19,13 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
         }}
         component={HomeScreen}
       />
+      <Stack.Screen
+        name="Search"
+        options={{
+          header: () => null,
+        }}
+        component={HomeScreen}
+      />
     </Stack.Navigator>
   );
 };
