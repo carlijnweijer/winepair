@@ -2,10 +2,10 @@ import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { SearchScreen } from "../../screens/HomeScreens/SearchScreen";
 import { colors } from "../../utils/colors";
 import { AuthContext } from "../authStack/AuthProvider";
 import { AuthStack } from "../authStack/AuthStack";
-import { HomeStack } from "../homeStack/HomeStack";
 import { AppParamList } from "./AppParamList";
 
 interface AppTabsProps {}
@@ -80,7 +80,7 @@ export const AppTabs: React.FC<AppTabsProps> = ({}) => {
         },
       }}
     >
-      <Tabs.Screen name="Search" component={HomeStack} />
+      <Tabs.Screen name="Search" component={SearchScreen} />
       <Tabs.Screen
         name="MyFavorites"
         component={user ? myFavorites : AuthStack}

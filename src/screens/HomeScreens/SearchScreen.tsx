@@ -4,7 +4,8 @@ import {
   PlayfairDisplay_700Bold_Italic,
 } from "@expo-google-fonts/playfair-display";
 import React, { useContext } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { secrets } from "../../../firebase";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
@@ -16,7 +17,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
-    backgroundColor: colors.darkbg,
   },
   content: {
     flex: 1,
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 33,
     fontFamily: "PlayfairDisplay_400Regular_Italic",
-    color: "white",
     width: 265,
     textAlign: "center",
     letterSpacing: 0.75,
@@ -85,7 +84,6 @@ export const SearchScreen = ({
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Search</Text>
-        {/* <Image source={require("../../../assets/imgwoman.png")} />
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Search")}
@@ -95,7 +93,8 @@ export const SearchScreen = ({
             source={require("../../../assets/Iconly/arrowRight.png")}
             style={{ height: 41, width: 41, marginRight: 8 }}
           />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
+        <Image source={require("../../../assets/imgwoman.png")} />
       </View>
     </SafeAreaView>
   );

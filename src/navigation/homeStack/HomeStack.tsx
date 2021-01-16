@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { HomeScreen } from "../../screens/HomeScreens/HomeScreen";
-import { SearchScreen } from "../../screens/HomeScreens/SearchScreen";
+import { AppTabs } from "../appStack/AppTabs";
 
 interface HomeStackProps {}
 
@@ -22,7 +22,7 @@ export const HomeStack: React.FC<HomeStackProps> = ({}) => {
         options={{
           header: () => null,
         }}
-        component={SearchScreen}
+        component={AppTabs}
       />
     </Stack.Navigator>
   );
