@@ -77,14 +77,42 @@ const styles = StyleSheet.create({
     borderRadius: 54,
     marginLeft: 10,
   },
-  nonBlurredContent: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
   modal: {
-    borderTopRightRadius: 32,
-    borderTopLeftRadius: 32,
     overflow: "hidden",
+  },
+  nonBlurredContent: {
+    marginTop: 40,
+    alignItems: "center",
+  },
+  closeBtn: {
+    marginTop: 20,
+    marginRight: 5,
+    width: 30,
+    height: 30,
+  },
+  modalTxt: {
+    width: 272,
+    marginTop: 30,
+    fontFamily: "Lato_400Regular",
+    fontSize: 16,
+    textAlign: "center",
+    lineHeight: 22,
+  },
+  modalTxtBold: {
+    fontFamily: "Lato_700Bold",
+  },
+  filters: {
+    flexDirection: "row",
+    alignContent: "space-around",
+  },
+  filterBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20,
+    width: 107,
+    height: 107,
+    borderRadius: 18,
+    backgroundColor: "pink",
   },
 });
 
@@ -136,18 +164,44 @@ export const SearchScreen = ({
       >
         <View style={{ marginTop: 100, flex: 1 }}>
           <BlurView
-            intensity={100}
-            style={[styles.nonBlurredContent, { height: "100%" }]}
+            intensity={95}
+            style={[
+              styles.nonBlurredContent,
+              { height: "100%", backgroundColor: "#9F9F9F" },
+            ]}
           >
-            <Text>Hello! I am bluring contents underneath</Text>
-
-            <Text>Hello from the modal</Text>
-            <TouchableOpacity
-              style={{ backgroundColor: "red", width: 30, height: 30 }}
-              onPress={() => setFilterScreen(!filterScreen)}
-            >
-              <Text>X</Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: "row", alignSelf: "flex-end" }}>
+              <TouchableOpacity
+                style={styles.closeBtn}
+                onPress={() => setFilterScreen(!filterScreen)}
+              >
+                <Image
+                  source={require("../../../assets/iconclose.png")}
+                  style={{ height: 15, width: 15 }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.filters}>
+              <View style={styles.filterBtn}>
+                <Image
+                  source={require("../../../assets/winefilter.png")}
+                  style={{ height: 72, width: 87 }}
+                />
+              </View>
+              <View style={styles.filterBtn}>
+                <Image
+                  source={require("../../../assets/mealfilter.png")}
+                  style={{ height: 46, width: 90 }}
+                />
+              </View>
+            </View>
+            <Text style={[styles.modalTxt, styles.modalTxtBold]}>
+              Find a wine that goes well with a food
+            </Text>
+            <Text style={styles.modalTxt}>
+              Food can be a dish name "steak", an ingredient name "salmon", or a
+              cuisine "italian"
+            </Text>
           </BlurView>
         </View>
       </Modal>
