@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
     width: 107,
     height: 107,
     borderRadius: 18,
-    backgroundColor: "pink",
   },
 });
 
@@ -182,26 +181,57 @@ export const SearchScreen = ({
               </TouchableOpacity>
             </View>
             <View style={styles.filters}>
-              <View style={styles.filterBtn}>
+              <TouchableOpacity
+                style={[
+                  styles.filterBtn,
+                  {
+                    backgroundColor:
+                      filter === "wine" ? colors.red : colors.lightgrey,
+                  },
+                ]}
+                onPress={() => setFilter("wine")}
+              >
                 <Image
                   source={require("../../../assets/winefilter.png")}
                   style={{ height: 72, width: 87 }}
                 />
-              </View>
-              <View style={styles.filterBtn}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.filterBtn,
+                  {
+                    backgroundColor:
+                      filter === "meal" ? colors.red : colors.lightgrey,
+                  },
+                ]}
+                onPress={() => setFilter("meal")}
+              >
                 <Image
                   source={require("../../../assets/mealfilter.png")}
                   style={{ height: 46, width: 90 }}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
-            <Text style={[styles.modalTxt, styles.modalTxtBold]}>
-              Find a wine that goes well with a food
-            </Text>
-            <Text style={styles.modalTxt}>
-              Food can be a dish name "steak", an ingredient name "salmon", or a
-              cuisine "italian"
-            </Text>
+            {filter === "wine" ? (
+              <View>
+                <Text style={[styles.modalTxt, styles.modalTxtBold]}>
+                  Find a dish that goes well with a given wine
+                </Text>
+                <Text style={styles.modalTxt}>
+                  For example: search for Malbec
+                </Text>
+              </View>
+            ) : (
+              <View>
+                <Text style={[styles.modalTxt, styles.modalTxtBold]}>
+                  Find a wine that goes well with a food
+                </Text>
+                <Text style={styles.modalTxt}>
+                  Food can be a dish name "steak", an ingredient name "salmon",
+                  or a cuisine "italian"
+                </Text>
+              </View>
+            )}
           </BlurView>
         </View>
       </Modal>
