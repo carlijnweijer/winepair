@@ -7,6 +7,7 @@ import {
   PlayfairDisplay_400Regular_Italic,
   PlayfairDisplay_700Bold_Italic,
 } from "@expo-google-fonts/playfair-display";
+import axios from "axios";
 import { BlurView } from "expo-blur";
 import React, { useContext, useState } from "react";
 import {
@@ -125,21 +126,19 @@ export const SearchScreen = ({
 
   const [filter, setFilter] = useState("wine");
   const [filterScreen, setFilterScreen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
-  const apiUrl = secrets.apiUrl;
+  const apiUrl =
+    filter === "wine"
+      ? "https://api.spoonacular.com/food/wine/dishes?wine="
+      : "https://api.spoonacular.com/food/wine/pairing?food=";
   const apiKey = secrets.apikey;
-  const query = "steak";
 
-  // const getPairing = async () => {
-  //   const response = await axios.get(
-  //     `${apiUrl}/pairing?apiKey=${apiKey}&food=${query}`
-  //   );
-  //   console.log("response is, ", response.data);
-  // };
+  const getPairing = async () => {
+    const response = await axios.get(`${apiUrl}${searchText}&apiKey=${apiKey}`);
+    console.log("response is ", response.data);
+  };
 
-  // useEffect(() => {
-  //   getPairing();
-  // }, []);
   let [fontsLoaded] = useFonts({
     PlayfairDisplay_400Regular_Italic,
     PlayfairDisplay_700Bold_Italic,
@@ -239,7 +238,17 @@ export const SearchScreen = ({
       <KeyboardAvoidingView style={styles.content}>
         <Text style={styles.title}>Search</Text>
         <View style={styles.input}>
-          <TextInput style={styles.inputLabel} placeholder="by wine" />
+          <TextInput
+            style={styles.inputLabel}
+            placeholder={
+              filter === "wine" ? "by wine" : "by ingredient, dish or cuisine"
+            }
+            onChangeText={(text) => {
+              setSearchText(text);
+              console.log(text);
+            }}
+            onSubmitEditing={getPairing}
+          />
           <TouchableOpacity
             style={styles.iconStyle}
             onPress={() => setFilterScreen(!filterScreen)}
