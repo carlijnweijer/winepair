@@ -7,9 +7,19 @@ import {
   PlayfairDisplay_400Regular_Italic,
   PlayfairDisplay_700Bold_Italic,
 } from "@expo-google-fonts/playfair-display";
-import React, { useContext } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
+import { BlurView } from "expo-blur";
+import React, { useContext, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Modal,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { secrets } from "../../../firebase";
 import { AuthContext } from "../../navigation/authStack/AuthProvider";
@@ -67,6 +77,15 @@ const styles = StyleSheet.create({
     borderRadius: 54,
     marginLeft: 10,
   },
+  nonBlurredContent: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modal: {
+    borderTopRightRadius: 32,
+    borderTopLeftRadius: 32,
+    overflow: "hidden",
+  },
 });
 
 interface HomeScreenProps {}
@@ -76,6 +95,10 @@ export const SearchScreen = ({
   route,
 }: HomeStackNavProps<"Home">) => {
   const { logout } = useContext(AuthContext);
+
+  const [filter, setFilter] = useState("wine");
+  const [filterScreen, setFilterScreen] = useState(false);
+
   const apiUrl = secrets.apiUrl;
   const apiKey = secrets.apikey;
   const query = "steak";
@@ -103,18 +126,47 @@ export const SearchScreen = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <StatusBar barStyle="dark-content" />
+
+      <Modal
+        visible={filterScreen}
+        animationType="slide"
+        transparent={true}
+        style={styles.modal}
+      >
+        <View style={{ marginTop: 100, flex: 1 }}>
+          <BlurView
+            intensity={100}
+            style={[styles.nonBlurredContent, { height: "100%" }]}
+          >
+            <Text>Hello! I am bluring contents underneath</Text>
+
+            <Text>Hello from the modal</Text>
+            <TouchableOpacity
+              style={{ backgroundColor: "red", width: 30, height: 30 }}
+              onPress={() => setFilterScreen(!filterScreen)}
+            >
+              <Text>X</Text>
+            </TouchableOpacity>
+          </BlurView>
+        </View>
+      </Modal>
+
+      <KeyboardAvoidingView style={styles.content}>
         <Text style={styles.title}>Search</Text>
         <View style={styles.input}>
           <TextInput style={styles.inputLabel} placeholder="by wine" />
-          <View style={styles.iconStyle}>
+          <TouchableOpacity
+            style={styles.iconStyle}
+            onPress={() => setFilterScreen(!filterScreen)}
+          >
             <Image
               source={require("../../../assets/Iconly/Filter.png")}
               style={{ height: 16, width: 16 }}
             />
-          </View>
+          </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
       <Image source={require("../../../assets/winebackground.png")} />
     </SafeAreaView>
   );
